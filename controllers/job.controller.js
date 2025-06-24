@@ -17,10 +17,8 @@ exports.createJob = async (req, res) => {
     }
 
     req.body.createdBy = req.user.id; 
-    console.log("Creating job with body:", req.body); // Log the request body for debugging
-    // Validate the request body using Joi
-    const { error } = validateJobInput(req.body);
-    console.log(error, "ttttttt", req.body); // Log the error for debugging
+    const body = req.body;
+    const { error } = validateJobInput(body);
     if (error) {
       return res.status(400).json({
         success: false,
